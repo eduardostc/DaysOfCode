@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personagens</title>
+</head>
+<body>
+    <h1>Personagens sem ser Traduzidos</h1>
+    <ul>
+        {% for p in personagens %}
+            <li>
+                Nome: {{ p.name_traduzido }}<br>
+                Afiliação: {{ p.affiliacao_traduzida }}<br>
+                Aliados: {{ p.allies|last}}<br>  
+                Inimigos: {{ p.enemies|last}}<br>
+                {% comment %} O filtro last é um filtro embutido do Django que retorna o último item de uma lista ou sequência {% endcomment %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
