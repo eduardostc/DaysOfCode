@@ -1,4 +1,72 @@
 <!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>7 Days: Django!</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="https://7daysofcode.io/assets/img/background-7days.1709759788.svg" width="30" height="30"
+                    class="d-inline-block align-top" alt="">
+                7 Days: Django!
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Afiliação</th>
+                    <th scope="col">Aliados</th>
+                    <th scope="col">Inimigos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in personagem %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td><img src="{{ p.photoUrl }}" alt="{{ p.name }}"
+                            class="img-fluid rounded-circle" style="width: 50px; height: 50px;"></td>
+                    <td>{{ p.name_traduzido }}</td>
+                    <td>{{ p.affiliacao_traduzida }}</td>
+                    <td>{{ p.allies|last }}</td>
+                    <td>{{ p.enemies|last }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center mt-4">
+                {% if page > 1 %}
+                <li class="page-item"><a class="page-link" href="?page={{ page|add:"-1" }}">Página Anterior</a></li>
+              {% endif %}
+                <li class="page-item disabled">
+                    <span class="page-link">Página {{ page }}</span>
+                </li>
+                <li class="page-item {% if not has_next %}{% endif %}">
+                    <a class="page-link" href="?page={{ page|add:"1" }}">Próxima Página</a>
+                </li>
+            </ul>
+        </nav>
+
+    </div>
+
+</body>
+
+</html>
+
+{% comment %} <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,4 +86,4 @@
         {% endfor %}
     </ul>
 </body>
-</html>
+</html> {% endcomment %}
